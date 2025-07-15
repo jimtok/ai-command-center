@@ -25,7 +25,7 @@
     - Compare (Tri-Sector Analysis): Vertikal industri (Umrah, Properti, Otomotif) disajikan dalam tata letak tab untuk membandingkan "Titik Masalah" vs "Solusi" secara efisien dan langsung.
     - Compare (Tangerang Raya Data, Table 2.1): Divisualisasikan menggunakan bagan batang berkelompok (Chart.js) untuk perbandingan langsung antar wilayah Tangerang Raya pada berbagai metrik.
     - Change (KPI Projections, Table 4.2): Ditampilkan dalam bagan garis dinamis (Chart.js) dengan dropdown interaktif, memungkinkan pengguna untuk memvisualisasikan pertumbuhan metrik spesifik dari waktu ke waktu.
-    - Organize (Service Tiers, Pitch Deck, SWOT): Disajikan dalam kartu, komponen akordeon, dan tata letak grid untuk mengelola kepadatan informasi.
+    - Organize (Service Tiers, Pitch Deck, SWOT, Optimization Plan): Disajikan dalam kartu, komponen akordeon, dan tata letak grid untuk mengelola kepadatan informasi.
     - Gemini Integration: Tombol "✨ Buat Analisis" ditambahkan untuk menghasilkan analisis SWOT secara real-time. Tombol "✨ Buat Konten" di bagian Pitch Deck menggunakan Gemini untuk menyusun narasi slide, yang ditampilkan dalam modal.
     - Pilihan ini didasarkan pada tujuan untuk menerjemahkan setiap bagian laporan menjadi bentuk interaktif yang paling sesuai, menggunakan Chart.js untuk semua bagan demi konsistensi dan kinerja.
     CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
@@ -35,6 +35,8 @@
             font-family: 'Inter', sans-serif;
             background-color: #F0F4F8; /* Light Grayish Blue */
             color: #1E293B; /* Slate 800 */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
         .futuristic-bg {
             background-color: #0D1B2A; /* Dark Navy */
@@ -110,19 +112,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        #page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0D1B2A;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
         .slide {
             transition: opacity 1s ease-in-out;
         }
@@ -140,10 +129,6 @@
 </head>
 <body class="antialiased">
 
-    <div id="page-loader">
-        <div class="loader" style="width: 50px; height: 50px;"></div>
-    </div>
-
     <!-- Header & Navigasi -->
     <header class="sticky top-0 z-50 bg-gray-800/80 backdrop-blur-lg shadow-lg">
         <div class="container mx-auto px-4">
@@ -156,6 +141,7 @@
                     <a href="#opportunity" class="nav-link font-medium" data-lang="nav_opportunity">Peluang</a>
                     <a href="#market" class="nav-link font-medium" data-lang="nav_market">Pasar</a>
                     <a href="#solution" class="nav-link font-medium" data-lang="nav_solution">Solusi</a>
+                    <a href="#optimization" class="nav-link font-medium" data-lang="nav_optimization">Optimisasi</a>
                     <a href="#strategy" class="nav-link font-medium" data-lang="nav_strategy">Strategi</a>
                     <a href="#analysis" class="nav-link font-medium" data-lang="nav_analysis">Analisis AI</a>
                     <a href="#pitch" class="nav-link font-medium" data-lang="nav_pitch">Pitch AI</a>
@@ -176,6 +162,7 @@
                  <a href="#opportunity" class="block py-2 px-4 text-sm nav-link" data-lang="nav_opportunity_m">Peluang</a>
                  <a href="#market" class="block py-2 px-4 text-sm nav-link" data-lang="nav_market_m">Pasar</a>
                  <a href="#solution" class="block py-2 px-4 text-sm nav-link" data-lang="nav_solution_m">Solusi</a>
+                 <a href="#optimization" class="block py-2 px-4 text-sm nav-link" data-lang="nav_optimization_m">Optimisasi</a>
                  <a href="#strategy" class="block py-2 px-4 text-sm nav-link" data-lang="nav_strategy_m">Strategi</a>
                  <a href="#analysis" class="block py-2 px-4 text-sm nav-link" data-lang="nav_analysis_m">Analisis AI</a>
                  <a href="#pitch" class="block py-2 px-4 text-sm nav-link" data-lang="nav_pitch_m">Pitch AI</a>
@@ -313,7 +300,7 @@
             </div>
         </section>
 
-        <!-- Bagian lainnya akan mengikuti di sini -->
+        <!-- Bagian 3: Solusi & Model Bisnis -->
         <section id="solution" class="py-16 scroll-mt-16">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-800" data-lang="solution_title">Arsitektur Layanan Berjenjang</h2>
@@ -339,571 +326,42 @@
             </div>
         </section>
 
-        <section id="strategy" class="py-16 bg-white rounded-2xl scroll-mt-16">
-             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800" data-lang="strategy_title">Rencana Implementasi Strategis</h2>
-                <p class="mt-2 text-lg text-gray-600" data-lang="strategy_subtitle">Kerangka kerja yang jelas untuk mencapai tujuan kami.</p>
-            </div>
-            <div class="mb-16">
-                 <h3 class="text-2xl font-bold text-center text-gray-800 mb-8" data-lang="roadmap_title">Peta Jalan 3 Fase</h3>
-                 <div class="relative max-w-2xl mx-auto">
-                    <div class="border-l-2 border-blue-300 absolute h-full top-0 left-4 md:left-1/2 md:-ml-px"></div>
-                    <div class="space-y-12">
-                        <div class="relative flex items-center">
-                            <div class="w-8 h-8 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold z-10 md:absolute md:left-1/2 md:-ml-4">1</div>
-                            <div class="md:w-1/2 md:pr-8"></div>
-                            <div class="w-full md:w-1/2 ml-10 md:ml-0 md:pl-8">
-                                <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
-                                    <p class="text-gray-500 text-sm" data-lang="phase1_duration">Bulan 1-12</p>
-                                    <h4 class="font-bold text-lg text-blue-800" data-lang="phase1_title">Fase 1: Pembentukan Basis</h4>
-                                    <p class="text-gray-600 mt-2" data-lang="phase1_desc">Fokus akuisisi 50 mitra PPIU Umrah di Tangerang Raya dengan layanan kepatuhan (Tier 1).</p>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="relative flex items-center">
-                            <div class="w-8 h-8 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold z-10 md:absolute md:left-1/2 md:-ml-4">2</div>
-                            <div class="w-full md:w-1/2 md:pr-8 md:text-right ml-10 md:ml-0">
-                                <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
-                                    <p class="text-gray-500 text-sm" data-lang="phase2_duration">Bulan 13-24</p>
-                                    <h4 class="font-bold text-lg text-blue-800" data-lang="phase2_title">Fase 2: Ekspansi Vertikal</h4>
-                                    <p class="text-gray-600 mt-2" data-lang="phase2_desc">Meluncurkan layanan pemasaran (Tier 2) untuk mengakuisisi 50+ mitra di sektor properti & otomotif.</p>
-                                </div>
-                            </div>
-                            <div class="md:w-1/2 md:pl-8"></div>
-                        </div>
-                        <div class="relative flex items-center">
-                             <div class="w-8 h-8 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold z-10 md:absolute md:left-1/2 md:-ml-4">3</div>
-                            <div class="md:w-1/2 md:pr-8"></div>
-                            <div class="w-full md:w-1/2 ml-10 md:ml-0 md:pl-8">
-                                <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
-                                    <p class="text-gray-500 text-sm" data-lang="phase3_duration">Bulan 25-36</p>
-                                    <h4 class="font-bold text-lg text-blue-800" data-lang="phase3_title">Fase 3: Inovasi & Skala</h4>
-                                    <p class="text-gray-600 mt-2" data-lang="phase3_desc">Memperkenalkan layanan Web3 (Tier 3) dan memulai ekspansi geografis ke kota satelit Jabodetabek lainnya.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-            <div>
-                <h3 class="text-2xl font-bold text-center text-gray-800 mb-4" data-lang="kpi_title">Proyeksi Indikator Kinerja Utama (KPI)</h3>
-                <div class="max-w-md mx-auto mb-8">
-                     <label for="kpi-select" class="block text-sm font-medium text-gray-700" data-lang="kpi_select_label">Pilih KPI untuk Dilihat:</label>
-                     <select id="kpi-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
-                         <option value="mrr" data-lang="kpi_option_mrr">Pendapatan Bulanan (MRR)</option>
-                         <option value="acquisition" data-lang="kpi_option_acquisition">Akuisisi Mitra</option>
-                         <option value="churn" data-lang="kpi_option_churn">Tingkat Pentalan Mitra (Churn)</option>
-                         <option value="leads" data-lang="kpi_option_leads">Prospek Dihasilkan (per Mitra)</option>
-                     </select>
-                </div>
-                <div class="chart-container h-80 md:h-96">
-                    <canvas id="kpiChart"></canvas>
-                </div>
-            </div>
-        </section>
-        
-        <section id="analysis" class="py-16 scroll-mt-16">
+        <!-- Bagian 4: Fokus Optimisasi -->
+        <section id="optimization" class="py-16 bg-white rounded-2xl scroll-mt-16">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800" data-lang="analysis_title">Analisis Strategis Berbasis AI</h2>
-                <p class="mt-2 text-lg text-gray-600" data-lang="analysis_subtitle">Gunakan Gemini untuk menghasilkan analisis SWOT secara dinamis berdasarkan model bisnis kami.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-xl font-semibold mb-4 text-green-700" data-lang="swot_strengths">Kekuatan (Strengths)</h3>
-                    <button class="gemini-button font-bold py-2 px-4 rounded-lg w-full mb-4 swot-button" data-swot="Kekuatan" data-lang="swot_button_strengths">✨ Buat Analisis Kekuatan</button>
-                    <div class="loader-container hidden h-8 flex justify-center items-center"><div class="loader"></div></div>
-                    <div class="swot-result text-gray-600 min-h-[120px]"></div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-xl font-semibold mb-4 text-red-700" data-lang="swot_weaknesses">Kelemahan (Weaknesses)</h3>
-                    <button class="gemini-button font-bold py-2 px-4 rounded-lg w-full mb-4 swot-button" data-swot="Kelemahan" data-lang="swot_button_weaknesses">✨ Buat Analisis Kelemahan</button>
-                    <div class="loader-container hidden h-8 flex justify-center items-center"><div class="loader"></div></div>
-                    <div class="swot-result text-gray-600 min-h-[120px]"></div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-xl font-semibold mb-4 text-blue-700" data-lang="swot_opportunities">Peluang (Opportunities)</h3>
-                    <button class="gemini-button font-bold py-2 px-4 rounded-lg w-full mb-4 swot-button" data-swot="Peluang" data-lang="swot_button_opportunities">✨ Buat Analisis Peluang</button>
-                    <div class="loader-container hidden h-8 flex justify-center items-center"><div class="loader"></div></div>
-                    <div class="swot-result text-gray-600 min-h-[120px]"></div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-xl font-semibold mb-4 text-yellow-700" data-lang="swot_threats">Ancaman (Threats)</h3>
-                    <button class="gemini-button font-bold py-2 px-4 rounded-lg w-full mb-4 swot-button" data-swot="Ancaman" data-lang="swot_button_threats">✨ Buat Analisis Ancaman</button>
-                    <div class="loader-container hidden h-8 flex justify-center items-center"><div class="loader"></div></div>
-                    <div class="swot-result text-gray-600 min-h-[120px]"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pitch" class="py-16 bg-white rounded-2xl scroll-mt-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800" data-lang="pitch_title">Asisten Pitch Deck Berbasis AI</h2>
-                <p class="mt-2 text-lg text-gray-600" data-lang="pitch_subtitle">Hasilkan draf narasi yang kuat untuk setiap bagian presentasi Anda.</p>
+                <h2 class="text-3xl font-bold text-gray-800" data-lang="optimization_title">Fokus Eksekusi: Optimisasi PortalTangerangRaya.com</h2>
+                <p class="mt-2 text-lg text-gray-600" data-lang="optimization_subtitle">Ini adalah rencana aksi nyata kami untuk membangun mesin penghasil prospek. Klik setiap pilar untuk melihat detailnya.</p>
             </div>
             <div class="max-w-3xl mx-auto space-y-4">
-                <!-- Konten Pitch Deck Accordion akan tetap statis -->
                 <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
                     <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-gray-700">
-                        <span>1-3: Masalah, Solusi & Peluang</span>
+                        <span data-lang="pillar1_title">Pilar 1: Optimisasi Konten & SEO</span>
                         <span class="accordion-icon transform rotate-0 transition-transform duration-300">+</span>
                     </button>
                     <div class="accordion-content px-4 pb-4 text-gray-600">
-                        <p class="mb-4">Menyoroti "krisis" yang dihadapi agensi independen, memperkenalkan AKOMODA sebagai ekosistem terpadu, dan menampilkan data pasar Tangerang Raya yang masif.</p>
-                        <button class="gemini-button text-sm font-bold py-2 px-3 rounded-lg pitch-button" data-title="Masalah, Solusi & Peluang Pasar">✨ Buat Konten Slide</button>
-                    </div>
-                </div>
-                 <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
-                    <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-gray-700">
-                        <span>4-6: Layanan, Cara Kerja & Model Bisnis</span>
-                         <span class="accordion-icon transform rotate-0 transition-transform duration-300">+</span>
-                    </button>
-                    <div class="accordion-content px-4 pb-4 text-gray-600">
-                        <p class="mb-4">Menjelaskan tiga tingkatan layanan (Foundation, Growth, Innovation), demo visual platform (dasbor agensi & marketplace), dan memaparkan model monetisasi (langganan, komisi).</p>
-                        <button class="gemini-button text-sm font-bold py-2 px-3 rounded-lg pitch-button" data-title="Model Layanan, Cara Kerja, dan Model Bisnis">✨ Buat Konten Slide</button>
-                    </div>
-                </div>
-                 <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
-                    <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-gray-700">
-                        <span>7-9: Strategi, Tim & Permintaan</span>
-                        <span class="accordion-icon transform rotate-0 transition-transform duration-300">+</span>
-                    </button>
-                    <div class="accordion-content px-4 pb-4 text-gray-600">
-                        <p class="mb-4">Menguraikan roadmap 3 fase go-to-market, memperkenalkan tim inti, dan menyatakan dengan jelas permintaan pendanaan serta alokasinya.</p>
-                        <button class="gemini-button text-sm font-bold py-2 px-3 rounded-lg pitch-button" data-title="Strategi Go-to-Market, Tim, dan Permintaan Pendanaan">✨ Buat Konten Slide</button>
-                    </div>
-                </div>
-                 <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
-                    <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-gray-700">
-                        <span>10-11: Visi & Kontak</span>
-                         <span class="accordion-icon transform rotate-0 transition-transform duration-300">+</span>
-                    </button>
-                    <div class="accordion-content px-4 pb-4 text-gray-600">
-                        <p class="mb-4">Menutup dengan visi besar untuk masa depan perdagangan jasa di Indonesia dan menyediakan informasi kontak yang jelas untuk langkah selanjutnya.</p>
-                        <button class="gemini-button text-sm font-bold py-2 px-3 rounded-lg pitch-button" data-title="Visi Jangka Panjang dan Kontak">✨ Buat Konten Slide</button>
-                    </div>
-                </div>
-            </div>
-             <div class="text-center mt-12">
-                <p class="text-lg text-gray-700" data-lang="pitch_cta_text">Siap untuk diskusi lebih lanjut?</p>
-                <a href="#architect" class="text-blue-600 hover:text-yellow-600 font-bold transition-colors" data-lang="pitch_cta_link">Hubungi Arsitek di Balik Visi Ini →</a>
-            </div>
-        </section>
-        
-        <section id="architect" class="py-16 scroll-mt-16">
-             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800" data-lang="architect_title">Sang Arsitek Ekosistem</h2>
-                <p class="mt-2 text-lg text-gray-600" data-lang="architect_subtitle">Visi ini dipimpin oleh seorang praktisi dengan pemahaman mendalam tentang teknologi dan pasar.</p>
-            </div>
-            <div class="bg-white max-w-4xl mx-auto rounded-xl shadow-lg p-8 grid md:grid-cols-3 gap-8 items-center">
-                <div class="md:col-span-1 text-center">
-                    <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span class="text-5xl">👤</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800">Jim Koto</h3>
-                    <p class="text-gray-500">a.k.a James Isa</p>
-                    <p class="text-blue-700 font-semibold" data-lang="architect_role">Founder & CEO</p>
-                </div>
-                <div class="md:col-span-2">
-                    <blockquote class="italic text-gray-600 text-lg mb-6" data-lang="architect_quote">"Visi ini lahir dari saya, Jim Koto, sebagai arsitek di baliknya. Inti dari penawaran komersial kami adalah `Akomoda Network`, sebuah ekosistem B2B yang dirancang untuk memberdayakan agensi jasa di Indonesia."</blockquote>
-                    <div class="border-t pt-4">
-                        <h4 class="font-semibold text-gray-700 mb-2" data-lang="architect_assets_title">Aset Digital Pendukung Visi:</h4>
-                        <ul class="space-y-2 text-sm">
-                            <li><strong>Legal & Kepercayaan:</strong> <a href="https://kotobatuah.com" target="_blank" rel="noopener" class="text-blue-600 hover:underline">KotoBatuah.com</a></li>
-                            <li><strong>Inovasi & Labs:</strong> <a href="https://jimtok.com" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Jimtok.com</a></li>
-                             <li><strong>Riset & Teknologi:</strong> <a href="https://ai-holistic.xyz" target="_blank" rel="noopener" class="text-blue-600 hover:underline">AI-Holistic.xyz</a></li>
-                            <li><strong>Penghasil Prospek:</strong> <a href="https://portaltangerangraya.com" target="_blank" rel="noopener" class="text-blue-600 hover:underline">PortalTangerangRaya.com</a></li>
-                            <li><strong>Profil Personal:</strong> <a href="https://jimkoto.my.id" target="_blank" rel="noopener" class="text-blue-600 hover:underline">JimKoto.my.id</a></li>
+                        <p class="font-semibold" data-lang="pillar1_goal_title">Tujuan:</p>
+                        <p class="mb-2" data-lang="pillar1_goal_desc">Memastikan setiap konten ditemukan oleh audiens yang tepat melalui Google.</p>
+                        <p class="font-semibold" data-lang="pillar1_action_title">Aksi Kunci:</p>
+                        <ul class="list-disc list-inside mt-1 space-y-1" data-lang="pillar1_action_list">
+                            <li>Melakukan riset kata kunci lokal yang mendalam, membuat konten pilar berbasis SEO, dan menerapkan SOP On-Page SEO untuk setiap artikel.</li>
+                            <li>Contoh: Menargetkan kata kunci "harga rumah gading serpong" dengan artikel panduan lengkap.</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </section>
-        </div>
-    </main>
-    
-    <!-- Modal for Gemini Response -->
-    <div id="gemini-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white rounded-lg shadow-xl w-11/12 md:max-w-2xl max-h-[80vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 id="modal-title" class="text-lg font-bold text-blue-800">Konten Dihasilkan oleh AI</h3>
-                <button id="close-modal-button" class="text-gray-500 hover:text-gray-800 text-3xl font-light">&times;</button>
-            </div>
-            <div id="modal-content" class="p-6 overflow-y-auto">
-                <div class="loader-container h-32 flex justify-center items-center"><div class="loader"></div></div>
-            </div>
-            <div class="p-4 border-t bg-gray-50 rounded-b-lg text-xs text-gray-500" data-lang="modal_disclaimer">
-                Konten ini dibuat oleh AI dan mungkin memerlukan verifikasi. Gunakan sebagai draf awal.
-            </div>
-        </div>
-    </div>
-
-    <footer class="futuristic-bg text-white mt-16">
-        <div class="container mx-auto px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="font-extrabold text-lg mb-4">AKOMODA NETWORK</h3>
-                    <p class="text-gray-400 text-sm" data-lang="footer_about">Ekosistem digital yang memberdayakan agensi jasa di Indonesia melalui teknologi, kepatuhan, dan pemasaran.</p>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-4" data-lang="footer_nav_title">Navigasi Cepat</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#opportunity" class="text-gray-300 hover:text-amber-400 transition-colors" data-lang="footer_nav_opportunity">Peluang</a></li>
-                        <li><a href="#solution" class="text-gray-300 hover:text-amber-400 transition-colors" data-lang="footer_nav_solution">Solusi</a></li>
-                        <li><a href="#strategy" class="text-gray-300 hover:text-amber-400 transition-colors" data-lang="footer_nav_strategy">Strategi</a></li>
-                        <li><a href="#architect" class="text-gray-300 hover:text-amber-400 transition-colors" data-lang="footer_nav_architect">Sang Arsitek</a></li>
-                    </ul>
-                </div>
-                 <div>
-                    <h3 class="font-bold text-lg mb-4" data-lang="footer_legal_title">Legal</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-gray-300 hover:text-amber-400 transition-colors" data-lang="footer_legal_privacy">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-amber-400 transition-colors" data-lang="footer_legal_terms">Syarat & Ketentuan</a></li>
-                    </ul>
-                </div>
-                 <div>
-                    <h3 class="font-bold text-lg mb-4" data-lang="footer_connect_title">Terhubung</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-amber-400 transition-colors">X</a>
-                        <a href="#" class="text-gray-300 hover:text-amber-400 transition-colors">LinkedIn</a>
-                        <a href="#" class="text-gray-300 hover:text-amber-400 transition-colors">YouTube</a>
+                <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                    <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-gray-700">
+                        <span data-lang="pillar2_title">Pilar 2: Optimisasi Konversi & Prospek</span>
+                        <span class="accordion-icon transform rotate-0 transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content px-4 pb-4 text-gray-600">
+                        <p class="font-semibold" data-lang="pillar2_goal_title">Tujuan:</p>
+                        <p class="mb-2" data-lang="pillar2_goal_desc">Mengubah pengunjung menjadi prospek (leads) yang dapat ditindaklanjuti.</p>
+                        <p class="font-semibold" data-lang="pillar2_action_title">Aksi Kunci:</p>
+                        <ul class="list-disc list-inside mt-1 space-y-1" data-lang="pillar2_action_list">
+                           <li>Merancang dan menempatkan CTA bertingkat (inline, akhir artikel, banner) dan mengimplementasikan "Lead Magnet" seperti e-book gratis untuk mendapatkan data kontak.</li>
+                           <li>Contoh: E-book "10 Kesalahan Fatal Saat Membeli Rumah di Tangerang".</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
-                <p data-lang="footer_copyright">&copy; 2025 AKOMODA NETWORK | Dioperasikan di bawah naungan Koto Batuah.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            // Page Loader
-            const pageLoader = document.getElementById('page-loader');
-            if (pageLoader) {
-                pageLoader.style.opacity = '0';
-                setTimeout(() => {
-                    pageLoader.style.display = 'none';
-                }, 500);
-            }
-
-            // --- Language Data ---
-            const langData = {
-                'id': {
-                    'nav_opportunity': 'Peluang', 'nav_market': 'Pasar', 'nav_solution': 'Solusi', 'nav_strategy': 'Strategi', 'nav_analysis': 'Analisis AI', 'nav_pitch': 'Pitch AI', 'nav_architect': 'Arsitek',
-                    'nav_opportunity_m': 'Peluang', 'nav_market_m': 'Pasar', 'nav_solution_m': 'Solusi', 'nav_strategy_m': 'Strategi', 'nav_analysis_m': 'Analisis AI', 'nav_pitch_m': 'Pitch AI', 'nav_architect_m': 'Arsitek',
-                    'slide1_title': 'Masa Depan Agensi Jasa Dimulai di Sini', 'slide1_desc': 'Kami menyediakan teknologi, kepatuhan, dan kekuatan pemasaran untuk membantu bisnis Anda berkembang.', 'slide1_cta': 'Jelajahi Ekosistem',
-                    'slide2_title': 'Kepatuhan Regulasi Menjadi Mudah', 'slide2_desc': 'Hadapi regulasi 2025 dengan percaya diri. Platform kami menyederhanakan proses kepatuhan untuk agensi Umrah.', 'slide2_cta': 'Lihat Fitur Kepatuhan',
-                    'slide3_title': 'Dominasi Pasar Digital Anda', 'slide3_desc': 'Manfaatkan kekuatan AI untuk menjangkau lebih banyak pelanggan dengan biaya lebih rendah. Bergabunglah dengan jaringan kami.', 'slide3_cta': 'Pelajari Pemasaran AI',
-                    'opportunity_title': 'Konvergensi Peluang Pasar', 'opportunity_subtitle': 'Sebuah "badai sempurna" dari tiga kekuatan pasar menciptakan celah unik untuk inovasi.',
-                    'opportunity1_title': 'Tekanan Regulasi', 'opportunity1_desc': 'Regulasi Umrah 2025 menjadi pendorong permintaan mendesak untuk layanan kepatuhan, membuka pintu bagi model "Compliance-as-a-Service".',
-                    'opportunity2_title': 'Perlombaan Digital', 'opportunity2_desc': 'Tingginya biaya akuisisi pelanggan di sektor properti & otomotif mendorong permintaan akan infrastruktur pemasaran bersama yang efisien.',
-                    'opportunity3_title': 'Aksesibilitas Teknologi', 'opportunity3_desc': 'Kematangan AI & Web3 memungkinkan kami menawarkan solusi pemasaran dan transparansi canggih dengan harga terjangkau bagi UKM.',
-                    'market_title': 'Analisis Pasar: Tangerang Raya Sebagai Arena Pembuktian', 'market_subtitle': 'Data menunjukkan Tangerang Raya sebagai inkubator ideal dengan demografi, ekonomi, dan kematangan digital yang solid.', 'market_chart_note': 'Arahkan kursor ke bagan untuk melihat perbandingan data.',
-                    'market_vertical_title': 'Penyelaman Vertikal: Titik Masalah & Solusi', 'market_vertical_subtitle': 'Setiap sektor memiliki tantangan unik yang kami jawab dengan solusi yang ditargetkan.',
-                    'tab_umrah': '✈️ Perjalanan Umrah', 'tab_property': '🏠 Real Estat', 'tab_auto': '🚗 Otomotif Bekas',
-                    'solution_title': 'Arsitektur Layanan Berjenjang', 'solution_subtitle': 'Model bisnis fleksibel yang dirancang untuk Fondasi, Pertumbuhan, dan Inovasi.',
-                    'tier1_title': 'Tier 1: Foundation', 'tier1_desc': 'Dasbor terpusat untuk mengelola kepatuhan regulasi, templat audit, dan integrasi SISKOPATUH. Memastikan mitra tetap beroperasi secara legal.', 'tier_popular': 'Paling Populer',
-                    'tier2_title': 'Tier 2: Growth', 'tier2_desc': 'Pembangkitan prospek berbasis AI, mesin konten otomatis, dan listing premium di marketplace kami untuk mendorong pertumbuhan bisnis.',
-                    'tier3_title': 'Tier 3: Innovation', 'tier3_desc': 'Layanan Web3 seperti "Paspor Aset" berbasis NFT untuk transparansi dan fasilitasi *smart contract* untuk membangun keunggulan kompetitif jangka panjang.',
-                    'strategy_title': 'Rencana Implementasi Strategis', 'strategy_subtitle': 'Kerangka kerja yang jelas untuk mencapai tujuan kami.', 'roadmap_title': 'Peta Jalan 3 Fase',
-                    'phase1_duration': 'Bulan 1-12', 'phase1_title': 'Fase 1: Pembentukan Basis', 'phase1_desc': 'Fokus akuisisi 50 mitra PPIU Umrah di Tangerang Raya dengan layanan kepatuhan (Tier 1).',
-                    'phase2_duration': 'Bulan 13-24', 'phase2_title': 'Fase 2: Ekspansi Vertikal', 'phase2_desc': 'Meluncurkan layanan pemasaran (Tier 2) untuk mengakuisisi 50+ mitra di sektor properti & otomotif.',
-                    'phase3_duration': 'Bulan 25-36', 'phase3_title': 'Fase 3: Inovasi & Skala', 'phase3_desc': 'Memperkenalkan layanan Web3 (Tier 3) dan memulai ekspansi geografis ke kota satelit Jabodetabek lainnya.',
-                    'kpi_title': 'Proyeksi Indikator Kinerja Utama (KPI)', 'kpi_select_label': 'Pilih KPI untuk Dilihat:', 'kpi_option_mrr': 'Pendapatan Bulanan (MRR)', 'kpi_option_acquisition': 'Akuisisi Mitra', 'kpi_option_churn': 'Tingkat Pentalan Mitra (Churn)', 'kpi_option_leads': 'Prospek Dihasilkan (per Mitra)',
-                    'analysis_title': 'Analisis Strategis Berbasis AI', 'analysis_subtitle': 'Gunakan Gemini untuk menghasilkan analisis SWOT secara dinamis berdasarkan model bisnis kami.',
-                    'swot_strengths': 'Kekuatan (Strengths)', 'swot_button_strengths': '✨ Buat Analisis Kekuatan',
-                    'swot_weaknesses': 'Kelemahan (Weaknesses)', 'swot_button_weaknesses': '✨ Buat Analisis Kelemahan',
-                    'swot_opportunities': 'Peluang (Opportunities)', 'swot_button_opportunities': '✨ Buat Analisis Peluang',
-                    'swot_threats': 'Ancaman (Threats)', 'swot_button_threats': '✨ Buat Analisis Ancaman',
-                    'pitch_title': 'Asisten Pitch Deck Berbasis AI', 'pitch_subtitle': 'Hasilkan draf narasi yang kuat untuk setiap bagian presentasi Anda.',
-                    'pitch_cta_text': 'Siap untuk diskusi lebih lanjut?', 'pitch_cta_link': 'Hubungi Arsitek di Balik Visi Ini →',
-                    'architect_title': 'Sang Arsitek Ekosistem', 'architect_subtitle': 'Visi ini dipimpin oleh seorang praktisi dengan pemahaman mendalam tentang teknologi dan pasar.', 'architect_role': 'Founder & CEO',
-                    'architect_quote': '"Visi ini lahir dari saya, Jim Koto, sebagai arsitek di baliknya. Inti dari penawaran komersial kami adalah `Akomoda Network`, sebuah ekosistem B2B yang dirancang untuk memberdayakan agensi jasa di Indonesia."',
-                    'architect_assets_title': 'Aset Digital Pendukung Visi:',
-                    'modal_disclaimer': 'Konten ini dibuat oleh AI dan mungkin memerlukan verifikasi. Gunakan sebagai draf awal.',
-                    'footer_about': 'Ekosistem digital yang memberdayakan agensi jasa di Indonesia melalui teknologi, kepatuhan, dan pemasaran.',
-                    'footer_nav_title': 'Navigasi Cepat', 'footer_nav_opportunity': 'Peluang', 'footer_nav_solution': 'Solusi', 'footer_nav_strategy': 'Strategi', 'footer_nav_architect': 'Sang Arsitek',
-                    'footer_legal_title': 'Legal', 'footer_legal_privacy': 'Kebijakan Privasi', 'footer_legal_terms': 'Syarat & Ketentuan',
-                    'footer_connect_title': 'Terhubung', 'footer_copyright': '© 2025 AKOMODA NETWORK | Dioperasikan di bawah naungan Koto Batuah.'
-                },
-                'en': {
-                    'nav_opportunity': 'Opportunity', 'nav_market': 'Market', 'nav_solution': 'Solution', 'nav_strategy': 'Strategy', 'nav_analysis': 'AI Analysis', 'nav_pitch': 'AI Pitch', 'nav_architect': 'Architect',
-                    'nav_opportunity_m': 'Opportunity', 'nav_market_m': 'Market', 'nav_solution_m': 'Solution', 'nav_strategy_m': 'Strategy', 'nav_analysis_m': 'AI Analysis', 'nav_pitch_m': 'AI Pitch', 'nav_architect_m': 'Architect',
-                    'slide1_title': 'The Future of Service Agencies Starts Here', 'slide1_desc': 'We provide the technology, compliance, and marketing power to help your business thrive.', 'slide1_cta': 'Explore Ecosystem',
-                    'slide2_title': 'Regulatory Compliance Made Simple', 'slide2_desc': 'Face the 2025 regulations with confidence. Our platform simplifies the compliance process for Umrah agencies.', 'slide2_cta': 'View Compliance Features',
-                    'slide3_title': 'Dominate Your Digital Market', 'slide3_desc': 'Leverage the power of AI to reach more customers at a lower cost. Join our network.', 'slide3_cta': 'Learn about AI Marketing',
-                    'opportunity_title': 'Market Opportunity Convergence', 'opportunity_subtitle': 'A "perfect storm" of three market forces creates a unique innovation gap.',
-                    'opportunity1_title': 'Regulatory Pressure', 'opportunity1_desc': 'The 2025 Umrah regulations are driving urgent demand for compliance services, opening the door for a "Compliance-as-a-Service" model.',
-                    'opportunity2_title': 'Digital Arms Race', 'opportunity2_desc': 'High customer acquisition costs in the property & automotive sectors are driving demand for a more efficient, shared marketing infrastructure.',
-                    'opportunity3_title': 'Technology Accessibility', 'opportunity3_desc': 'The maturity of AI & Web3 allows us to offer sophisticated marketing and transparency solutions at an affordable price for SMEs.',
-                    'market_title': 'Market Analysis: Tangerang Raya as a Proving Ground', 'market_subtitle': 'Data shows Tangerang Raya is an ideal incubator with solid demographics, economy, and digital maturity.', 'market_chart_note': 'Hover over the chart to see data comparison.',
-                    'market_vertical_title': 'Vertical Dive: Pain Points & Solutions', 'market_vertical_subtitle': 'Each sector has unique challenges that we address with targeted solutions.',
-                    'tab_umrah': '✈️ Umrah Travel', 'tab_property': '🏠 Real Estate', 'tab_auto': '🚗 Used Automotive',
-                    'solution_title': 'Tiered Service Architecture', 'solution_subtitle': 'A flexible business model designed for Foundation, Growth, and Innovation.',
-                    'tier1_title': 'Tier 1: Foundation', 'tier1_desc': 'A centralized dashboard to manage regulatory compliance, audit templates, and SISKOPATUH integration. Ensuring partners stay legally operational.', 'tier_popular': 'Most Popular',
-                    'tier2_title': 'Tier 2: Growth', 'tier2_desc': 'AI-powered lead generation, automated content engines, and premium listings on our marketplace to drive business growth.',
-                    'tier3_title': 'Tier 3: Innovation', 'tier3_desc': 'Web3 services like an NFT-based "Asset Passport" for transparency and smart contract facilitation to build a long-term competitive edge.',
-                    'strategy_title': 'Strategic Implementation Plan', 'strategy_subtitle': 'A clear framework to achieve our goals.', 'roadmap_title': '3-Phase Roadmap',
-                    'phase1_duration': 'Months 1-12', 'phase1_title': 'Phase 1: Beachhead Establishment', 'phase1_desc': 'Focus on acquiring 50 Umrah agency partners in Tangerang Raya with compliance services (Tier 1).',
-                    'phase2_duration': 'Months 13-24', 'phase2_title': 'Phase 2: Vertical Expansion', 'phase2_desc': 'Launch marketing services (Tier 2) to acquire 50+ partners in the real estate & automotive sectors.',
-                    'phase3_duration': 'Months 25-36', 'phase3_title': 'Phase 3: Innovation & Scale', 'phase3_desc': 'Introduce Web3 services (Tier 3) and begin geographic expansion to other Jabodetabek satellite cities.',
-                    'kpi_title': 'Key Performance Indicator (KPI) Projections', 'kpi_select_label': 'Select KPI to View:', 'kpi_option_mrr': 'Monthly Recurring Revenue (MRR)', 'kpi_option_acquisition': 'Partner Acquisition', 'kpi_option_churn': 'Partner Churn Rate', 'kpi_option_leads': 'Leads Generated (per Partner)',
-                    'analysis_title': 'AI-Powered Strategic Analysis', 'analysis_subtitle': 'Use Gemini to dynamically generate a SWOT analysis based on our business model.',
-                    'swot_strengths': 'Strengths', 'swot_button_strengths': '✨ Generate Strengths Analysis',
-                    'swot_weaknesses': 'Weaknesses', 'swot_button_weaknesses': '✨ Generate Weaknesses Analysis',
-                    'swot_opportunities': 'Opportunities', 'swot_button_opportunities': '✨ Generate Opportunities Analysis',
-                    'swot_threats': 'Threats', 'swot_button_threats': '✨ Generate Threats Analysis',
-                    'pitch_title': 'AI-Powered Pitch Deck Assistant', 'pitch_subtitle': 'Generate powerful narrative drafts for each section of your presentation.',
-                    'pitch_cta_text': 'Ready for a deeper discussion?', 'pitch_cta_link': 'Contact the Architect Behind the Vision →',
-                    'architect_title': 'The Ecosystem Architect', 'architect_subtitle': 'This vision is led by a practitioner with a deep understanding of technology and the market.', 'architect_role': 'Founder & CEO',
-                    'architect_quote': '"This vision was born from me, Jim Koto, as its architect. The core of our commercial offering is `Akomoda Network`, a B2B ecosystem designed to empower service agencies in Indonesia."',
-                    'architect_assets_title': 'Digital Assets Supporting the Vision:',
-                    'modal_disclaimer': 'This content is AI-generated and may require verification. Use as a first draft.',
-                    'footer_about': 'A digital ecosystem empowering service agencies in Indonesia through technology, compliance, and marketing.',
-                    'footer_nav_title': 'Quick Navigation', 'footer_nav_opportunity': 'Opportunity', 'footer_nav_solution': 'Solution', 'footer_nav_strategy': 'Strategy', 'footer_nav_architect': 'The Architect',
-                    'footer_legal_title': 'Legal', 'footer_legal_privacy': 'Privacy Policy', 'footer_legal_terms': 'Terms & Conditions',
-                    'footer_connect_title': 'Connect', 'footer_copyright': '© 2025 AKOMODA NETWORK | Operated under the auspices of Koto Batuah.'
-                }
-            };
-            
-            let currentLang = 'id';
-
-            const sliderContent = [
-                { langKey: 'slide1', href: '#solution' },
-                { langKey: 'slide2', href: '#solution' },
-                { langKey: 'slide3', href: '#market' }
-            ];
-            let currentSlide = 0;
-
-            // --- Core Functions ---
-            function switchLanguage(lang) {
-                currentLang = lang;
-                document.documentElement.lang = lang;
-                document.querySelectorAll('[data-lang]').forEach(el => {
-                    const key = el.dataset.lang;
-                    if (langData[lang][key]) {
-                        el.textContent = langData[lang][key];
-                    }
-                });
-                document.getElementById('lang-switcher').textContent = lang === 'id' ? 'EN' : 'ID';
-                document.getElementById('lang-switcher-mobile').textContent = lang === 'id' ? 'EN' : 'ID';
-                updateSliderContent();
-            }
-
-            function updateSliderContent() {
-                const slide = sliderContent[currentSlide];
-                const titleKey = `${slide.langKey}_title`;
-                const descKey = `${slide.langKey}_desc`;
-                const ctaKey = `${slide.langKey}_cta`;
-                
-                const contentContainer = document.getElementById('slider-content-container');
-                contentContainer.innerHTML = `
-                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in-down" data-lang="${titleKey}">${langData[currentLang][titleKey]}</h1>
-                    <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 mb-8 animate-fade-in-up" data-lang="${descKey}">${langData[currentLang][descKey]}</p>
-                    <a href="${slide.href}" class="cta-button font-bold py-3 px-8 rounded-lg text-lg animate-fade-in-up" data-lang="${ctaKey}">${langData[currentLang][ctaKey]}</a>
-                `;
-            }
-            
-            function showSlide(index) {
-                const slides = document.querySelectorAll('.slide');
-                const dots = document.querySelectorAll('.slider-dot');
-                
-                slides.forEach((slide, i) => {
-                    slide.style.opacity = i === index ? '1' : '0';
-                });
-
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('bg-white', i === index);
-                    dot.classList.toggle('bg-white/50', i !== index);
-                });
-                
-                currentSlide = index;
-                updateSliderContent();
-            }
-
-            // --- Event Listeners ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const activateNavLink = (link) => {
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                if (link) link.classList.add('active');
-            }
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-                        activateNavLink(link);
-                    }
-                });
-            }, { rootMargin: '-50% 0px -50% 0px' });
-            sections.forEach(section => observer.observe(section));
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (!mobileMenu.classList.contains('hidden')) {
-                       mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
-            // Language Switcher Logic
-            const langSwitcher = document.getElementById('lang-switcher');
-            const langSwitcherMobile = document.getElementById('lang-switcher-mobile');
-            langSwitcher.addEventListener('click', () => switchLanguage(currentLang === 'id' ? 'en' : 'id'));
-            langSwitcherMobile.addEventListener('click', () => switchLanguage(currentLang === 'id' ? 'en' : 'id'));
-
-            // Slider Logic
-            const dots = document.querySelectorAll('.slider-dot');
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => showSlide(index));
-            });
-            setInterval(() => {
-                let nextSlide = (currentSlide + 1) % sliderContent.length;
-                showSlide(nextSlide);
-            }, 7000);
-            showSlide(0); // Initial call
-
-            // Market Chart
-            const marketChartCtx = document.getElementById('marketChart').getContext('2d');
-            new Chart(marketChartCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Populasi (jt)', 'PDRB (T Rp)', '% Usia Prod.', 'Kepadatan (jiwa/km²)'],
-                    datasets: [
-                        { label: 'Kota Tangerang', data: [1.95, 224.79, 74, 12000], backgroundColor: 'rgba(65, 90, 119, 0.7)', borderColor: '#415A77', borderWidth: 1 },
-                        { label: 'Kab. Tangerang', data: [3.37, 108.57, 67.82, 3300], backgroundColor: 'rgba(255, 193, 7, 0.7)', borderColor: '#FFC107', borderWidth: 1 },
-                        { label: 'Tangerang Selatan', data: [1.43, 112.21, 67.87, 9700], backgroundColor: 'rgba(119, 141, 169, 0.7)', borderColor: '#778DA9', borderWidth: 1 }
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, type: 'logarithmic', ticks: { callback: (value) => new Intl.NumberFormat('id-ID').format(value) } } },
-                    plugins: { legend: { position: 'top' }, title: { display: true, text: 'Indikator Kunci Ekonomi & Demografi Tangerang Raya' }, tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 }).format(context.parsed.y)}` } } }
-                }
-            });
-
-            // Tabs Logic
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.dataset.tab;
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    tabPanes.forEach(pane => {
-                        pane.classList.toggle('hidden', pane.dataset.tabContent !== tabId);
-                        pane.classList.toggle('active', pane.dataset.tabContent === tabId);
-                    });
-                });
-            });
-
-            // KPI Chart
-            const kpiChartCtx = document.getElementById('kpiChart').getContext('2d');
-            const kpiData = {
-                mrr: { label: 'Pendapatan Bulanan (MRR) dalam Miliar Rp', data: [0.15, 0.5, 1.2], borderColor: '#415A77' },
-                acquisition: { label: 'Total Akuisisi Mitra', data: [50, 150, 225], borderColor: '#FFC107' },
-                churn: { label: 'Tingkat Pentalan Mitra (Churn) dalam %', data: [10, 8, 5], borderColor: '#EF4444' },
-                leads: { label: 'Prospek Dihasilkan (per Mitra/Bulan)', data: [5, 15, 25], borderColor: '#10B981' }
-            };
-            let kpiChart = new Chart(kpiChartCtx, {
-                type: 'line',
-                data: { labels: ['Tahun 1', 'Tahun 2', 'Tahun 3'], datasets: [{ label: kpiData.mrr.label, data: kpiData.mrr.data, fill: false, borderColor: kpiData.mrr.borderColor, tension: 0.1 }] },
-                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } }, plugins: { legend: { display: true, position: 'bottom' } } }
-            });
-            document.getElementById('kpi-select').addEventListener('change', (event) => {
-                const selectedKpi = event.target.value;
-                kpiChart.data.datasets[0].label = kpiData[selectedKpi].label;
-                kpiChart.data.datasets[0].data = kpiData[selectedKpi].data;
-                kpiChart.data.datasets[0].borderColor = kpiData[selectedKpi].borderColor;
-                kpiChart.update();
-            });
-
-            // Accordion Logic
-            document.querySelectorAll('.accordion-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    const icon = button.querySelector('.accordion-icon');
-                    const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
-                    document.querySelectorAll('.accordion-content').forEach(accContent => {
-                        if(accContent !== content) {
-                           accContent.style.maxHeight = '0px';
-                           if(accContent.previousElementSibling.querySelector('.accordion-icon')) {
-                              accContent.previousElementSibling.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
-                           }
-                        }
-                    });
-                    if (!isExpanded) {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        if(icon) icon.style.transform = 'rotate(45deg)';
-                    } else {
-                        content.style.maxHeight = '0px';
-                        if(icon) icon.style.transform = 'rotate(0deg)';
-                    }
-                });
-            });
-
-            // Gemini API Integration
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-            const businessContext = "Akomoda Network adalah hub komunitas digital yang berfokus pada tiga agensi periklanan: Perjalanan Spiritual (Umrah/Haji), Properti (Arsitektur, Kontraktor), dan Otomotif (Mobil/Motor Bekas). Model bisnisnya adalah 'As-a-Service' yang menawarkan Kepatuhan (Compliance), Pemasaran (Marketing), dan Inovasi (termasuk Web3/NFT) kepada mitra UKM di area Tangerang Raya. Tujuannya adalah membangun ekosistem sinergis untuk mengurangi biaya akuisisi pelanggan dan meningkatkan kepercayaan.";
-            async function callGeminiAPI(prompt, loaderElement, resultElement) {
-                loaderElement.classList.remove('hidden');
-                resultElement.innerHTML = '';
-                try {
-                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(`API Error: ${errorData.error?.message || response.statusText}`);
-                    }
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        resultElement.innerHTML = text.replace(/\n/g, '<br>').replace(/\* /g, '<span class="mr-2">•</span>').replace(/\*/g, '');
-                    } else { throw new Error("Respons tidak valid dari API."); }
-                } catch (error) {
-                    resultElement.innerHTML = `<p class="text-red-500">Gagal memuat data. Silakan coba lagi. Error: ${error.message}</p>`;
-                } finally {
-                    loaderElement.classList.add('hidden');
-                }
-            }
-            document.querySelectorAll('.swot-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const swotType = e.target.dataset.swot;
-                    const prompt = `Berdasarkan konteks bisnis berikut: "${businessContext}". Buat analisis ${swotType} dalam format daftar poin (bullet points) untuk Akomoda Network. Berikan 3-4 poin paling relevan. Jawaban harus dalam Bahasa Indonesia.`;
-                    const loader = e.target.nextElementSibling;
-                    const resultDiv = loader.nextElementSibling;
-                    callGeminiAPI(prompt, loader, resultDiv);
-                });
-            });
-            const modal = document.getElementById('gemini-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalContent = document.getElementById('modal-content');
-            const closeModalButton = document.getElementById('close-modal-button');
-            document.querySelectorAll('.pitch-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const slideTitle = e.target.dataset.title;
-                    const prompt = `Anda adalah seorang konsultan bisnis. Untuk sebuah perusahaan bernama Akomoda Network, tuliskan sebuah narasi yang kuat dan meyakinkan dalam 1-2 paragraf untuk slide presentasi investor dengan judul "${slideTitle}". Gunakan Bahasa Indonesia yang profesional.`;
-                    modalTitle.textContent = `Konten AI untuk: ${slideTitle}`;
-                    modal.classList.remove('hidden');
-                    const loaderContainer = document.createElement('div');
-                    loaderContainer.className = 'loader-container h-32 flex justify-center items-center';
-                    loaderContainer.innerHTML = '<div class="loader"></div>';
-                    modalContent.innerHTML = '';
-                    modalContent.appendChild(loaderContainer);
-                    callGeminiAPI(prompt, loaderContainer, modalContent);
-                });
-            });
-            closeModalButton.addEventListener('click', () => modal.classList.add('hidden'));
-            modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
-        });
-    </script>
-</body>
-</html>
+                <div class="accordion-item bg-gray-50 rounded-lg shadow-sm">
+                    <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-gray-70
